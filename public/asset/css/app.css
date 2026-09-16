@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+
+label {display: block;}
+ 
+input[type=text] {
+  /* Sizing and Box Model */
+  width: 100%;                  /* Makes the input full-width of its container */
+  max-width: 100%;             /* Prevents it from getting too wide */
+  padding: 12px 16px;           /* Inner spacing for readable text */
+  margin: 8px 0;                /* Outer spacing */
+  box-sizing: border-box;       /* Includes padding and border in total width */
+
+  /* Typography */
+  font-family: 'Segoe UI', sans-serif,;
+  font-size: 16px;              /* Prevents automatic zoom on mobile iOS devices */
+  color: #9b1e1e;               /* Text color typed by user */
+
+  /* Borders and Background */
+  background-color: #ffffff;
+  border: 1px solid #cccccc;    /* Light gray default border */
+  border-radius: 6px;           /* Smooth, slightly rounded corners */
+  
+  /* Transitions */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Style the placeholder text */
+input[type="text"]::placeholder {
+  color: #888888;
+  opacity: 1;                   /* Standardizes placeholder opacity across browsers */
+}
+
+/* Style the input when clicked or focused */
+input[type="text"]:focus {
+  outline: none;                /* Removes the default browser blue ring */
+  border-color: #4a90e2;        /* Custom blue border */
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Soft glow effect */
+}
+
+/* Style the input when disabled */
+input[type="text"]:disabled {
+  background-color: #f5f5f5;
+  color: #999999;
+  cursor: not-allowed;          /* Changes mouse cursor to a block icon */
+}
+
+
+
+/*Label*/
+
+/* Container spacing */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the label */
+.form-group label {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+/* Style the text input specifically */
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input focus state */
+.form-group input[type="text"]:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
