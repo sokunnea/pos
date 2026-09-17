@@ -25,3 +25,4 @@ Route::post('/logout', Logout::class)
 
 Route::resource('test', TestController::class);
 Route::resource('product', ProductController::class);
+Route::get('product_test/view', [ProductController::class, 'view'])->name('product_test.view');

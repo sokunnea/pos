@@ -2,7 +2,7 @@
 
 {{-- @section('title', 'About Us') --}}
 @section('content')
-    <h2>{{ 'product' }}</h2>
+    <h2>{{ 'product->New' }}</h2>
     <form action="{{ route('product.store') }}" method="POST">
         @csrf
         <div>

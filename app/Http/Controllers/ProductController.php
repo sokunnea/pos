@@ -13,8 +13,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $list = DB::table('products')->selectRaw('*')->get();
+        // $list = DB::table('products')->selectRaw('*')->get();
+        $list = Product::get();
         return view('product.index', compact('list'));
+    }
+    public function view(Request $request){
+        // $product= db::table('products')->where('id',$request->product_id)->first();
+        $product= Product::find($request->product_id);
+        // dd($request);
+        if($request->btn_action == 'VIEW'){
+            return view('product.show',compact('product'));
+        }
+        if($request->btn_action == 'EDIT'){
+            return view('product.edit',compact('product'));
+        }
+        if($request->btn_action == 'NEW'){
+            
+            return view('product.create');
+        }
+        if($request->btn_action == 'DELETE'){
+            Product::destroy($request->product_id);
+        }
     }
 
     /**
@@ -51,9 +70,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Product $product)
     {
-        $product = DB::table('products')->selectRaw('*')->where('id',2)->first();
+        // $product = DB::table('products')->selectRaw('*')->where('id',)->first();
         return view('product.show', compact('product'));
     }
 
@@ -62,8 +81,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // $product = DB::table('products')->selectRaw('*')->where('id',2)->first();
-        // dd($product);
         return view('product.edit', compact('product'));
     }
 

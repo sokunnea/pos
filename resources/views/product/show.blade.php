@@ -2,7 +2,7 @@
 
 {{-- @section('title', 'About Us') --}}
 @section('content')
-    <h2>{{ 'product' }}</h2>
+    <h2>{{ 'product->Show' }}</h2>
     <div>
         <label for="product_en">{{ 'Name En' }}</label>
         <input type="text" name="product_en" id="product_en" value="{{ $product->product_en }}"/>
