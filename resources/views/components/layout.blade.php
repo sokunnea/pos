@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Default Title')</title>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="{{ asset('asset/css/app.css') }}">
-    
+    {{-- <link rel="stylesheet" href="{{ asset('asset/css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
+    <script src="{{ asset('asset/js/app.js') }}"></script>
+    <script src="{{ asset('asset/js/bootstrap.js') }}"></script>
+
     {{-- <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}"> --}}
     {{-- <script src="{{ asset('asset/js/app.js') }}"></script>
     <script src="{{ asset('asset/js/bootstrap.js') }}"></script> --}}

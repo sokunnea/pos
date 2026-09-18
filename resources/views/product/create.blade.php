@@ -21,7 +21,7 @@
             <label for="description">{{ 'Description' }}</label>
             <input type="text" name="description" id="description"/>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-xs btn-primary">Submit</button>
     </form>
 @endsection
             
