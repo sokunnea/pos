@@ -37,6 +37,17 @@
                             </form>
                             
                         </td>
+                        <td>
+                            <div class="action-btn bg-info ms-2">
+                                <a href="#" class="mx-3 btn btn-sm  align-items-center"
+                                    data-url="{{ URL::to('product/' . $obj->id . '/edit') }}"
+                                    data-ajax-popup="true" data-size="md" data-bs-toggle="tooltip" title=""
+                                    data-title="{{ __('Edit Leave Type') }}"
+                                    data-bs-original-title="{{ __('Edit') }}">
+                                    <i class="ti ti-pencil text-white"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
 

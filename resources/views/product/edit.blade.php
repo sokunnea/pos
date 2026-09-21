@@ -1,26 +1,31 @@
-@extends('components.layout')
+{{-- @extends('components.layout') --}}
 
 {{-- @section('title', 'About Us') --}}
+
 @section('content')
     <h2>{{ 'product->edit' }}</h2>
     <form action="{{ route('product.update', $product->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <div>
-            <label for="product_en">{{ 'Name En' }}</label>
-            <input type="text" name="product_en" id="product_en" value="{{ $product->product_en }}"/>
+        <div class="modal-body">
+            <div class="row">
+                <div>
+                    <label for="product_en">{{ 'Name En' }}</label>
+                    <input type="text" name="product_en" id="product_en" value="{{ $product->product_en }}"/>
+                </div>
+                <div>
+                    <label for="product_kh">{{ 'Name Kh' }}</label>
+                    <input type="text" name="product_kh" id="product_kh" value="{{ $product->product_kh }}"/>
+                </div>
+                <div>
+                    <label for="status">{{ 'Status' }}</label>
+                    <input type="text" name="status" id="status" value="{{ $product->status }}"/>
+                </div>
+                <button type="submit">Submit</button>
+            </div>
         </div>
-        <div>
-            <label for="product_kh">{{ 'Name Kh' }}</label>
-            <input type="text" name="product_kh" id="product_kh" value="{{ $product->product_kh }}"/>
-        </div>
-        <div>
-            <label for="status">{{ 'Status' }}</label>
-            <input type="text" name="status" id="status" value="{{ $product->status }}"/>
-        </div>
-        <button type="submit">Submit</button>
     </form>
     
 @endsection
-            
-        
+          
+

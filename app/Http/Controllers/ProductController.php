@@ -83,6 +83,17 @@ class ProductController extends Controller
     {
         return view('product.edit', compact('product'));
     }
+    // public function edit(Product $leavetype)
+    // {
+    //     if(\Auth::user()->can('Edit Leave Type'))
+    //     {
+    //         return view('leavetype.edit', compact('leavetype'));
+    //     }
+    //     else{
+    //         return response()->json(['error' => __('Permission denied.')], 401);
+    //     }
+    // }
+
 
 
     /**

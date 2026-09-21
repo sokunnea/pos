@@ -1,32 +1,142 @@
-<aside class="w-64 bg-slate-800 text-white min-h-screen p-4 flex flex-col justify-between">
-    <div>
-        <!-- Application Logo -->
-        <div class="text-2xl font-bold mb-6 tracking-wide px-2">
-            MyApp Admin
-        </div>
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/@codingnepal -->
+{{-- <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar with Dropdown Menu | CodingNepal</title>
+    <link rel="stylesheet" href="{{ asset('asset/css/sidebar.css') }}">
+    <!-- Linking Google Fonts for Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  </head> --}}
+  <body>
+    <!-- Mobile Sidebar Menu Button -->
+    <button class="sidebar-menu-button">
+      <span class="material-symbols-rounded">menu</span>
+    </button>
 
-        <!-- Navigation Links -->
-        <nav class="space-y-1">
-            {{-- <a href="#" class="block py-2.5 px-4 rounded transition duration-200 'ddd' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white' }}">
-                Dashboard
-            </a> --}}
-            {{-- <a href="{{ route('dashboard') }}" 
-               class="block py-2.5 px-4 rounded transition duration-200 {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white' }}">
-                Dashboard
-            </a>
-            <a href="{{ route('users.index') }}" 
-               class="block py-2.5 px-4 rounded transition duration-200 {{ request()->routeIs('users.*') ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white' }}">
-                Users
-            </a>
-            <a href="{{ route('settings') }}" 
-               class="block py-2.5 px-4 rounded transition duration-200 {{ request()->routeIs('settings') ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-700 hover:text-white' }}">
-                Settings
-            </a> --}}
-        </nav>
-    </div>
+    <aside class="sidebar">
+      <!-- Sidebar Header -->
+      <header class="sidebar-header">
+        <a href="#" class="header-logo">
+          <img src="logo.png" alt="CodingNepal" />
+        </a>
+        <button class="sidebar-toggler">
+          <span class="material-symbols-rounded">chevron_left</span>
+        </button>
+      </header>
 
-    <!-- Footer Profile/Logout Section -->
-    <div class="border-t border-slate-700 pt-4 px-2">
-        <span class="block text-sm text-slate-300">{{ 'Guest' }}</span>{{-- auth()->user()->name ?? 'Guest' --}}
-    </div>
-</aside>
+      <nav class="sidebar-nav">
+        <!-- Primary Top Nav -->
+        <ul class="nav-list primary-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">dashboard</span>
+              <span class="nav-label">Dashboard</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Dashboard</a></li>
+            </ul>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown-container">
+            <a href="#" class="nav-link dropdown-toggle">
+              <span class="material-symbols-rounded">calendar_today</span>
+              <span class="nav-label">Services</span>
+              <span class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+            </a>
+
+            <!-- Dropdown Menu -->
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Services</a></li>
+              <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link dropdown-link">IT Consulting</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Cloud Solutions</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Mobile Apps</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">notifications</span>
+              <span class="nav-label">Notifications</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Notifications</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">local_library</span>
+              <span class="nav-label">Resources</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Resources</a></li>
+            </ul>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown-container">
+            <a href="#" class="nav-link dropdown-toggle">
+              <span class="material-symbols-rounded">star</span>
+              <span class="nav-label">Bookmarks</span>
+              <span class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+            </a>
+
+            <!-- Dropdown Menu -->
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Bookmarks</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Saved Tutorials</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Favorite Blogs</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Resource Guides</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">extension</span>
+              <span class="nav-label">Extensions</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Extensions</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">settings</span>
+              <span class="nav-label">Settings</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Settings</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Secondary Bottom Nav -->
+        <ul class="nav-list secondary-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">help</span>
+              <span class="nav-label">Support</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Support</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">logout</span>
+              <span class="nav-label">Sign Out</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Script -->
+    <script src="{{ asset('asset/js/sidebar.js') }}"></script>
+  </body>
+</html>
