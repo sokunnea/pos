@@ -6,22 +6,23 @@
     <title>@yield('title', 'Default Title')</title>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- <link rel="stylesheet" href="{{ asset('asset/css/app.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('asset/css/sidebar.css') }}"> --}}
     
-    <link rel="stylesheet" href="{{ asset('asset/css/sidebar.css') }}">
+    
     <!-- Linking Google Fonts for Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" /> --}}
     
     
 
     <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
-    {{-- <script src="{{ asset('asset/js/app.js') }}"></script> --}}
-    {{-- <script src="{{ asset('asset/js/bootstrap.js') }}"></script> --}}
+    <script src="{{ asset('asset/js/app.js') }}"></script>
+    <script src="{{ asset('asset/js/bootstrap.js') }}"></script>
     
 </head>
 <body>
     <div class="page-content">
             <!-- Sidebar Partial Placement -->
-            @include('partials.sidebar')
+            {{-- @include('partials.sidebar') --}}
     </div>
 
         
@@ -36,7 +37,7 @@
             <h1 class="text-xl font-semibold text-slate-800">Control Panel</h1>
         </header> --}}
         
-        <main class="container my-4">
+        <main class="container">
             @yield('content')
         </main>
 </body>

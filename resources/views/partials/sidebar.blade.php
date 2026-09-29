@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - youtube.com/@codingnepal -->
-{{-- <html lang="en">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    {{-- <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sidebar with Dropdown Menu | CodingNepal</title>
+    <title>Sidebar with Dropdown Menu | CodingNepal</title> --}}
     <link rel="stylesheet" href="{{ asset('asset/css/sidebar.css') }}">
     <!-- Linking Google Fonts for Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  </head> --}}
+  </head>
   <body>
     <!-- Mobile Sidebar Menu Button -->
     <button class="sidebar-menu-button">
