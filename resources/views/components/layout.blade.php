@@ -28,10 +28,10 @@
         
         
 
-        <header class="bg-dark text-white p-3">
+        {{-- <header class="bg-dark text-white p-3">
             <!-- Global Header Content -->
             Header
-        </header>
+        </header> --}}
         <!-- Optional Top Navigation Bar -->
         {{-- <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl font-semibold text-slate-800">Control Panel</h1>

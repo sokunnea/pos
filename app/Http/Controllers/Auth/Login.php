@@ -30,4 +30,7 @@ class Login extends Controller
             ->withErrors(['email' => 'The provided credentials do not match our records.'])
             ->onlyInput('email');
     }
+    public function guest(Request $request){
+        return 'lol';
+    }
 }

@@ -6,8 +6,13 @@
         <h2>{{ 'product' }}</h2>
         
         <table>
+            <form action="{{ route('product_test.search') }}" method="get">
+                <label for="search_txt">{{ 'Search' }}</label>
+                <input type="text" name="search_txt" id="search_txt"/>
+                <button type="submit" class="btn btn-xs btn-primary" title="Search">{{ 'Search'  }}</button>
+            </form>
+
             <form action="{{ route('product_test.view') }}" method="GET">
-                
                 <button type="submit" class="btn btn-xs btn-primary" name="btn_action" value="NEW" title="New Record">{{ 'New'  }}</button>
             </form>
             <header>

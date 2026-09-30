@@ -118,4 +118,10 @@ class ProductController extends Controller
     private function getHelloFunction($test_value){
         return $test_value;
     }
+    public function search(Request $request){
+        $product_filter = Product::whereLike('id',$request->search_txt)
+        ->orWhereLike('product_en',$request->search_txt)
+        ->get();
+        return view('product.index', ["list"=>$product_filter]);
+    }
 }
