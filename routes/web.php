@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginRegisterController;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('auth.home');
 });
 
-use App\Http\Controllers\Auth\LoginRegisterController;
 
 Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
@@ -19,3 +21,4 @@ Route::controller(LoginRegisterController::class)->group(function() {
 });
 
 Route::resource('test', TestController::class);
+Route::resource('products', ProductController::class)->middleware('auth');
