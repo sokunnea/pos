@@ -116,7 +116,7 @@ class RuleRepository
     public function write(string $glob, string $title, string $note): string
     {
         $glob = trim($glob);
-        $title = trim((string) preg_replace('/\R/', ' ', $title));
+        $title = trim(str_replace(["\r\n", "\r", "\n"], ' ', $title));
         $note = trim($note);
 
         $target = $this->resolveTargetFile($glob);
@@ -256,11 +256,14 @@ class RuleRepository
      */
     protected function meaningfulSegments(string $glob): array
     {
-        return Str::of($glob)
+        $segments = Str::of($glob)
             ->explode('/')
-            ->filter(static fn (string $segment): bool => filled($segment) && ! Str::contains($segment, ['*', '.']))
-            ->values()
-            ->all();
+            ->filter(static fn (string $segment): bool => filled($segment))
+            ->values();
+
+        $directories = $segments->reject(static fn (string $segment): bool => Str::contains($segment, ['*', '.']))->values();
+
+        return ($directories->isNotEmpty() ? $directories : $segments)->all();
     }
 
     /**
@@ -268,7 +271,12 @@ class RuleRepository
      */
     protected function slugForSegments(array $segments): string
     {
-        return Str::slug(Str::snake(implode(' ', $segments)));
+        $words = array_map(
+            static fn (string $segment): string => Str::contains($segment, ['*', '.']) ? Str::lower(str_replace('.', ' ', $segment)) : Str::snake($segment),
+            $segments,
+        );
+
+        return Str::slug(implode(' ', $words));
     }
 
     /**
@@ -287,7 +295,7 @@ class RuleRepository
             try {
                 $parsed = $this->parse($path);
             } catch (Throwable) {
-                $raw = (string) preg_replace('/\R/', "\n", (string) File::get($path));
+                $raw = str_replace(["\r\n", "\r"], "\n", (string) File::get($path));
                 $parsed = ['paths' => [], 'body' => $raw];
             }
         }
