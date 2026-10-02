@@ -25,7 +25,6 @@ use phpDocumentor\Reflection\PseudoTypes\ClosedResource;
 use phpDocumentor\Reflection\PseudoTypes\Conditional;
 use phpDocumentor\Reflection\PseudoTypes\ConditionalForParameter;
 use phpDocumentor\Reflection\PseudoTypes\ConstExpression;
-use phpDocumentor\Reflection\PseudoTypes\DecimalIntString;
 use phpDocumentor\Reflection\PseudoTypes\EnumString;
 use phpDocumentor\Reflection\PseudoTypes\False_;
 use phpDocumentor\Reflection\PseudoTypes\FloatValue;
@@ -45,7 +44,6 @@ use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 use phpDocumentor\Reflection\PseudoTypes\NegativeInteger;
 use phpDocumentor\Reflection\PseudoTypes\NeverReturn;
 use phpDocumentor\Reflection\PseudoTypes\NeverReturns;
-use phpDocumentor\Reflection\PseudoTypes\NonDecimalIntString;
 use phpDocumentor\Reflection\PseudoTypes\NonEmptyArray;
 use phpDocumentor\Reflection\PseudoTypes\NonEmptyList;
 use phpDocumentor\Reflection\PseudoTypes\NonEmptyLowercaseString;
@@ -157,8 +155,6 @@ final class TypeResolver
         'non-empty-lowercase-string' => NonEmptyLowercaseString::class,
         'non-empty-string' => NonEmptyString::class,
         'numeric-string' => NumericString::class,
-        'non-decimal-int-string' => NonDecimalIntString::class,
-        'decimal-int-string' => DecimalIntString::class,
         'numeric' => Numeric_::class,
         'trait-string' => TraitString::class,
         'enum-string' => EnumString::class,

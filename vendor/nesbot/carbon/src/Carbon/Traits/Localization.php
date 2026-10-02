@@ -291,17 +291,13 @@ trait Localization
                 }
             }
 
-            $monthTranslations = array_merge(
+            $$translationKey = array_merge(
                 $mode & CarbonInterface::TRANSLATE_MONTHS
                     ? $processList(self::getTranslationArray($months, static::MONTHS_PER_YEAR, $timeString))
                     : [],
                 $mode & CarbonInterface::TRANSLATE_MONTHS
                     ? $processList(self::getTranslationArray($messages['months_short'] ?? [], static::MONTHS_PER_YEAR, $timeString))
                     : [],
-            );
-
-            $$translationKey = array_merge(
-                $monthTranslations,
                 $mode & CarbonInterface::TRANSLATE_DAYS
                     ? $processList(self::getTranslationArray($weekdays, static::DAYS_PER_WEEK, $timeString))
                     : [],
@@ -342,50 +338,24 @@ trait Localization
             ]),
             $fromTranslations,
         );
-        $monthNameCount = \count($monthTranslations);
-        $firstNumberOffset = preg_match('/^\D+\d/', $timeString, $match)
-            ? \strlen($match[0]) // -1 to remove the first digit, +1 to add the extra wrapping spaced added just below
-            : INF;
 
-        return substr(preg_replace_callback(
-            '/(?<=[\d\s+.\/,_-])('.implode('|', $fromTranslations).')(?=[\d\s+.\/,_-])/iu',
-            function ($match) use ($fromTranslations, $toTranslations, $monthNameCount, $firstNumberOffset) {
-                [[$chunk, $offset]] = $match;
+        return substr(preg_replace_callback('/(?<=[\d\s+.\/,_-])('.implode('|', $fromTranslations).')(?=[\d\s+.\/,_-])/iu', function ($match) use ($fromTranslations, $toTranslations) {
+            [$chunk] = $match;
 
-                $indexes = self::getMatchingWordIndexes($fromTranslations, $chunk);
+            $index = array_search($chunk, $fromTranslations);
 
-                if ($indexes !== []) {
-                    // Before the first number in the string, prefer day names over month names
-                    $bestIndexes = \count($indexes) > 1 && $offset < $firstNumberOffset
-                        ? array_values(array_filter($indexes, static fn ($index) => $index > $monthNameCount))
-                        : [];
-                    $index = $bestIndexes[0] ?? $indexes[0];
+            if ($index !== false) {
+                return $toTranslations[$index] ?? '';
+            }
 
+            foreach ($fromTranslations as $index => $word) {
+                if (preg_match("/^$word\$/iu", $chunk)) {
                     return $toTranslations[$index] ?? '';
                 }
-
-                return $chunk; // @codeCoverageIgnore
-            },
-            " $timeString ",
-            flags: PREG_OFFSET_CAPTURE,
-        ), 1, -1);
-    }
-
-    private static function getMatchingWordIndexes(array $fromTranslations, string $search): array
-    {
-        $indexes = array_keys($fromTranslations, $search, true);
-
-        if ($indexes !== []) {
-            return $indexes;
-        }
-
-        foreach ($fromTranslations as $index => $word) {
-            if (preg_match("/^$word\$/iu", $search)) {
-                $indexes[] = $index;
             }
-        }
 
-        return $indexes;
+            return $chunk; // @codeCoverageIgnore
+        }, " $timeString "), 1, -1);
     }
 
     /**

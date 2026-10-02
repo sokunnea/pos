@@ -150,16 +150,6 @@ final class Printer
 			IntersectionTypeNode::class,
 			NullableTypeNode::class,
 		],
-		NullableTypeNode::class . '->type' => [
-			UnionTypeNode::class,
-			IntersectionTypeNode::class,
-			NullableTypeNode::class,
-		],
-		ConditionalTypeNode::class . '->subjectType' => [
-			UnionTypeNode::class,
-			IntersectionTypeNode::class,
-			NullableTypeNode::class,
-		],
 	];
 
 	/** @var array<string, list<class-string<TypeNode>>> */
@@ -451,7 +441,7 @@ final class Printer
 		if ($node instanceof ConditionalTypeNode) {
 			return sprintf(
 				'(%s %s %s ? %s : %s)',
-				$this->printConditionalSubjectType($node->subjectType),
+				$this->printType($node->subjectType),
 				$node->negated ? 'is not' : 'is',
 				$this->printType($node->targetType),
 				$this->printType($node->if),
@@ -501,11 +491,7 @@ final class Printer
 			return (string) $node;
 		}
 		if ($node instanceof NullableTypeNode) {
-			if (
-				$node->type instanceof IntersectionTypeNode
-				|| $node->type instanceof UnionTypeNode
-				|| $node->type instanceof NullableTypeNode
-			) {
+			if ($node->type instanceof IntersectionTypeNode || $node->type instanceof UnionTypeNode) {
 				return '?(' . $this->printType($node->type) . ')';
 			}
 
@@ -529,27 +515,6 @@ final class Printer
 	private function wrapInParentheses(TypeNode $node): string
 	{
 		return '(' . $this->printType($node) . ')';
-	}
-
-	/**
-	 * What a conditional type asks about, written so that it is read back as
-	 * the very same type.
-	 *
-	 * "?Foo is Bar ? ... : ..." and "Foo|Bar is Baz ? ... : ..." both read as a
-	 * type followed by something the type says nothing about, so a subject of
-	 * either kind keeps its parentheses.
-	 */
-	private function printConditionalSubjectType(TypeNode $type): string
-	{
-		if (
-			$type instanceof UnionTypeNode
-			|| $type instanceof IntersectionTypeNode
-			|| $type instanceof NullableTypeNode
-		) {
-			return $this->wrapInParentheses($type);
-		}
-
-		return $this->printType($type);
 	}
 
 	private function printOffsetAccessType(TypeNode $type): string

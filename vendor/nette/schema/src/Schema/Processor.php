@@ -21,9 +21,6 @@ final class Processor
 	private bool $skipDefaults = false;
 
 
-	/**
-	 * When enabled, properties with default values are omitted from the output.
-	 */
 	public function skipDefaults(bool $value = true): void
 	{
 		$this->skipDefaults = $value;
@@ -38,9 +35,9 @@ final class Processor
 	{
 		$this->createContext();
 		$data = $schema->normalize($data, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		$data = $schema->complete($data, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		return $data;
 	}
 
@@ -57,35 +54,30 @@ final class Processor
 		$first = true;
 		foreach ($dataset as $data) {
 			$data = $schema->normalize($data, $this->context);
-			$this->throwErrors();
+			$this->throwsErrors();
 			$flatten = $first ? $data : $schema->merge($data, $flatten);
 			$first = false;
 		}
 
 		$data = $schema->complete($flatten, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		return $data;
 	}
 
 
-	/**
-	 * Returns all deprecation warnings collected during the last processing run.
-	 * @return list<string>
-	 */
+	/** @return list<string> */
 	public function getWarnings(): array
 	{
 		$res = [];
-		if (isset($this->context)) {
-			foreach ($this->context->warnings as $message) {
-				$res[] = $message->toString();
-			}
+		foreach ($this->context->warnings as $message) {
+			$res[] = $message->toString();
 		}
 
 		return $res;
 	}
 
 
-	private function throwErrors(): void
+	private function throwsErrors(): void
 	{
 		if ($this->context->errors) {
 			throw new ValidationException(null, $this->context->errors);

@@ -18,16 +18,13 @@ class ValidationException extends Nette\InvalidStateException
 	public function __construct(
 		?string $message,
 		/** @var list<Message> */
-		private readonly array $messages = [],
+		private array $messages = [],
 	) {
 		parent::__construct($message ?? $messages[0]->toString());
 	}
 
 
-	/**
-	 * Returns all validation error messages as formatted strings.
-	 * @return list<string>
-	 */
+	/** @return list<string> */
 	public function getMessages(): array
 	{
 		$res = [];
@@ -39,10 +36,7 @@ class ValidationException extends Nette\InvalidStateException
 	}
 
 
-	/**
-	 * Returns all validation error messages as Message objects.
-	 * @return list<Message>
-	 */
+	/** @return list<Message> */
 	public function getMessageObjects(): array
 	{
 		return $this->messages;
