@@ -1,8 +1,11 @@
 @extends('layouts.app')
+{{-- @extends('components.layout') --}}
 
 @section('content')
 
-<div class="row justify-content-center mt-3">
+
+{{-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> --}}
+<div class="row">
     <div class="col-md-12">
 
         @session('success')
@@ -61,7 +64,7 @@
 
             </div>
         </div>
-    </div>    
+    </div>
 </div>
     
 @endsection

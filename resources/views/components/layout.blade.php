@@ -14,15 +14,16 @@
     
     
 
-    <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}"> --}}
     <script src="{{ asset('asset/js/app.js') }}"></script>
     <script src="{{ asset('asset/js/bootstrap.js') }}"></script>
     
 </head>
 <body>
+    
     <div class="page-content">
             <!-- Sidebar Partial Placement -->
-            {{-- @include('partials.sidebar') --}}
+            @include('partials.sidebar')
     </div>
 
         
