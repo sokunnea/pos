@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel 12 Custom User Registration and Login Tutorial - AllPHPTricks.com</title>
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"> --}}
-    <link href="../public/asset/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/sidebars.css') }}">
 </head>
 <body>
