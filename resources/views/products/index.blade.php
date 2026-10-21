@@ -2,7 +2,11 @@
 {{-- @extends('components.layout') --}}
 
 @section('content')
-
+<div class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+    {{-- <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('Product') }}</a></li> --}}
+    <li class="breadcrumb-item">{{ __('Product') }}</li>
+</div>
 
 {{-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> --}}
 <div class="row">
@@ -17,7 +21,9 @@
         <div class="card">
             <div class="card-header">Product List</div>
             <div class="card-body">
-                <a href="{{ route('products.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Product</a>
+                @can('product-create')
+                    <a href="{{ route('products.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Product</a>
+                @endcan
                 <table class="table table-striped table-bordered">
                     <thead>
                       <tr>
@@ -43,10 +49,12 @@
                                     @method('DELETE')
 
                                     <a href="{{ route('products.show', $product->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
-
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>   
-
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this product?');"><i class="bi bi-trash"></i> Delete</button>
+                                    @can('product-edit')
+                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>   
+                                    @endcan
+                                    @can('product-delete')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this product?');"><i class="bi bi-trash"></i> Delete</button>
+                                    @endcan
                                 </form>
                             </td>
                         </tr>
