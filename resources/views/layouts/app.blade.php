@@ -104,8 +104,11 @@
                             </button>
                             <div class="collapse" id="account-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    @can('Manage Product')
+                                    @can('product-manage')
                                         <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
+                                    @endcan
+                                    @can('purchase-order-manage')
+                                        <li><a class="nav-link" href="{{ route('purchase_order.index') }}">Manage Purchase</a></li>
                                     @endcan
                                     <li>
                                         <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a>
@@ -121,7 +124,9 @@
 
                 {{-- end sidebar --}}
                 
-                <div class="col-md-10">
+                <div style="
+    width: 85%;
+">
                     {{-- <p>Back to Tutorial: 
                         <a href="https://www.allphptricks.com/laravel-12-custom-user-registration-and-login-tutorial/"><strong>Tutorial Link</strong></a>
                     </p>
