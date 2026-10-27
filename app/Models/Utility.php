@@ -7,7 +7,7 @@ class Utility extends Model
 {
     public static function settings(){
         $lol = Setting::selectRaw('name,_value')->get()->toArray();
-        dd($lol);
+        // dd($lol);
     }
 
 }
