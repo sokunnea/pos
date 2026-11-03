@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ModelTestController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -39,4 +40,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products', ProductController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('purchase_order', PurchaseOrderController::class);
+    Route::resource('model_test', ModelTestController::class);
+    Route::resource('category', CategoryController::class);
 });
