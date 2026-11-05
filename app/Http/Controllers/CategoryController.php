@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -29,7 +31,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         Category::create($request->validated());
 
@@ -42,7 +44,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show', compact('category'));
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -50,13 +52,13 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-         return view('categories.edit', compact('category'));
+         return view('category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
        $category->update($request->validated());
 
@@ -70,9 +72,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $categories->delete();
+        $category->delete();
 
-        return redirect()->route('.index')
+        return redirect()->route('category.index')
                 ->withSuccess('Category is deleted successfully.');
     }
 }
