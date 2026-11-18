@@ -8,9 +8,10 @@ use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\ElementController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+
 
 Route::get('/', function () {
     // return view('welcome');
@@ -43,4 +44,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('purchase_order', PurchaseOrderController::class);
     Route::resource('model_test', ModelTestController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('element', ElementController::class);
+    
+  
 });
