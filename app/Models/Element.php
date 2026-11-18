@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Element extends Model
+{
+     protected $fillable = [
+        'code',
+        'name_en',
+        'name_kh',
+        'master',
+        'status'
+    ];
+     
+}
